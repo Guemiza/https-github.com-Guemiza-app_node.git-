@@ -1,0 +1,14 @@
+sudo: required 
+services :
+- docker
+script:
+- docker build -t python:latest .
+- docker images 
+before_deploy:
+- docker login -u amelgm  -p amoulache123
+
+deploy:
+  provider: script
+  script: docker push amelgm/python
+  on:
+    branch: main
